@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MPI - Exploring Fauna of Indonesia: Bekantan</title>
+<style>
+:root{--navy:#123047;--teal:#087f8c;--mint:#dff6ee;--gold:#ffc857;--ink:#20313c;--paper:#f5faf8;--white:#fff;--coral:#f07862}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+header{background:linear-gradient(120deg,#123047,#087f8c);color:white;padding:24px 18px}
+.wrap{max-width:980px;margin:auto}header h1{margin:0;font-size:clamp(1.55rem,4vw,2.5rem)}header p{margin:.4rem 0 0}
+nav{display:flex;flex-wrap:wrap;gap:8px;padding:14px 0}
+nav button,.btn{border:0;border-radius:12px;padding:10px 14px;background:#e3efed;color:var(--navy);font-weight:700;cursor:pointer}
+nav button.active,.btn.primary{background:var(--gold);color:#173344}button:hover{filter:brightness(.97)}button:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+main{padding:0 16px 30px}.panel{background:white;border-radius:18px;padding:clamp(16px,3vw,28px);box-shadow:0 6px 22px #153b4b12;margin:10px 0 20px}
+h2{color:var(--teal);margin-top:0}h3{color:var(--navy)}.hero{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.animal{background:#e1f4ec;border-radius:18px;min-height:220px;display:grid;place-items:center;font-size:6rem}
+.small{font-size:.92rem;color:#4d626b}.pill{display:inline-block;border-radius:99px;background:var(--mint);padding:4px 10px;font-size:.82rem;font-weight:700}
+.question{padding:14px;border:1px solid #d9e6e4;border-radius:14px;margin:14px 0}.options{display:grid;gap:8px;margin-top:10px}
+.options label{display:flex;gap:10px;align-items:flex-start;background:#f5faf8;padding:10px;border-radius:10px;cursor:pointer}
+input[type=radio]{margin-top:5px}.feedback{font-weight:700;margin-top:10px}.good{color:#087443}.bad{color:#a43d2c}
+.progress{height:8px;background:#dce9e7;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--gold);width:0;transition:width .2s}
+footer{text-align:center;color:#587078;padding:16px;font-size:.88rem}.hidden{display:none!important}
+table{border-collapse:collapse;width:100%;margin:12px 0}th,td{border:1px solid #d7e4e1;padding:9px;text-align:left}th{background:#e9f5f1}
+@media(max-width:650px){.hero{grid-template-columns:1fr}.animal{min-height:150px;font-size:4.5rem}nav button{flex:1 1 42%}}
+</style></head>
+<body>
+<header><div class="wrap"><span class="pill">MEDIA PEMBELAJARAN INTERAKTIF</span><h1>Exploring Fauna of Indonesia</h1><p><strong>Unit 1: Bekantan (Proboscis Monkey)</strong> · Belajar mengenal fauna khas Indonesia</p></div></header>
+<main class="wrap">
+<nav id="nav" aria-label="Navigasi pembelajaran"></nav>
+<div class="progress" aria-label="Kemajuan belajar"><span id="progress"></span></div>
+<section id="content" class="panel" aria-live="polite"></section>
+<footer>MPI interaktif · Materi dapat dibuka secara offline melalui browser. Guru dapat menyesuaikan isi dan soal sesuai kebutuhan kelas.</footer>
+</main>
+<script>
+const pages = [
+{label:"Apersepsi",title:"1. Apersepsi — Meet the Bekantan!",body:`
+<div class="hero"><div><p>Halo, learners! Indonesia memiliki banyak hewan unik. Pernahkah kamu melihat monyet berhidung panjang yang hidup di Kalimantan?</p><p>Amati ilustrasi di samping. Menurutmu, apa yang membuat hewan ini istimewa?</p><button class="btn primary" onclick="go(1)">Mulai belajar →</button></div><div class="animal" role="img" aria-label="Ilustrasi bekantan">🐒🌿</div></div>
+<p class="small">Pertanyaan pemantik: What do you already know about the proboscis monkey?</p>`},
+{label:"Asesmen awal",title:"2. Asesmen Awal — What do you know?",body:quizForm("pre",[
+["Where does the proboscis monkey live? ",["Kalimantan, Indonesia","Antarctica","The Sahara Desert"],0],
+["What is special about the male proboscis monkey? ",["A very long nose","Blue feathers","A shell"],0],
+["A proboscis monkey is a…",["mammal","reptile","fish"],0]
+],"Coba jawab berdasarkan pengetahuanmu. Hasil ini untuk mengetahui pengetahuan awal, bukan nilai akhir.")},
+{label:"Materi pokok",title:"3. Materi Pokok — Get to Know the Bekantan",body:`
+<h3>Meet the proboscis monkey</h3><p>Bekantan (proboscis monkey) adalah primata yang hidup alami di Pulau Kalimantan, termasuk wilayah Indonesia, Malaysia, dan Brunei Darussalam. Nama ilmiahnya <i>Nasalis larvatus</i>.</p>
+<div class="hero"><div class="animal" role="img" aria-label="Ilustrasi bekantan di hutan">🐒🌳</div><div><h3>Key facts</h3><ul><li><b>Appearance:</b> males have a large, long nose.</li><li><b>Habitat:</b> mangrove forests, riverine forests, and swamp forests.</li><li><b>Food:</b> mainly leaves, seeds, and unripe fruits.</li><li><b>Movement:</b> they can climb trees and are good swimmers.</li><li><b>Conservation:</b> habitat loss and human activities threaten their survival.</li></ul></div></div>
+<h3>Useful English vocabulary</h3><table><tr><th>English</th><th>Bahasa Indonesia</th></tr><tr><td>long nose</td><td>hidung panjang</td></tr><tr><td>mangrove forest</td><td>hutan mangrove/bakau</td></tr><tr><td>river</td><td>sungai</td></tr><tr><td>leaves</td><td>daun-daun</td></tr><tr><td>endangered</td><td>terancam punah</td></tr><tr><td>protect</td><td>melindungi</td></tr></table>
+<h3>Example descriptive text</h3><blockquote><b>The Proboscis Monkey</b><br>The proboscis monkey is a unique animal from Borneo. It has reddish-brown fur and a long nose, especially the male. It lives in forests near rivers and mangroves. It eats leaves, seeds, and fruits. We must protect its habitat to help this special animal survive.</blockquote>
+<p><b>Reading tip:</b> descriptive text identifies an animal and describes its appearance, habitat, food, and special characteristics.</p><button class="btn primary" onclick="go(3)">Try the simulation →</button>`},
+{label:"Simulasi",title:"4. Simulasi — Build a Description",body:`
+<p>Susun informasi berikut untuk membuat deskripsi singkat tentang bekantan. Pilih jawaban yang tepat di setiap bagian.</p>
+<div class="question"><label for="habitat"><b>1. Habitat</b></label><select id="habitat"><option value="">Choose an answer…</option><option value="river">Forests near rivers and mangroves</option><option value="desert">Hot deserts</option><option value="ice">Polar ice</option></select></div>
+<div class="question"><label for="food"><b>2. Food</b></label><select id="food"><option value="">Choose an answer…</option><option value="leaves">Leaves, seeds, and fruits</option><option value="rocks">Rocks and metal</option><option value="plastic">Plastic waste</option></select></div>
+<div class="question"><label for="protect"><b>3. How can we help?</b></label><select id="protect"><option value="">Choose an answer…</option><option value="trees">Protect forests and avoid destroying habitats</option><option value="cut">Cut down more mangrove trees</option><option value="hunt">Hunt wild animals</option></select></div>
+<button class="btn primary" onclick="checkSim()">Check my description</button><div id="simResult" class="feedback"></div>
+<div class="question"><b>Your description:</b><p id="builtText">Complete the choices above, then check your answer.</p></div>`},
+{label:"Kuis",title:"5. Kuis — Check Your Understanding",body:quizForm("quiz",[
+["What is the scientific name of the bekantan?",["Nasalis larvatus","Panthera tigris","Elephas maximus"],0],
+["Which habitat is suitable for proboscis monkeys?",["Mangrove and riverine forests","Open ocean","Snowy mountains"],0],
+["What do proboscis monkeys mainly eat?",["Leaves, seeds, and unripe fruits","Only fish","Only insects"],0],
+["Which sentence describes appearance?",["It has reddish-brown fur and a long nose.","It lives near rivers.","It eats leaves and seeds."],0],
+["Why should we protect bekantan habitat?",["To help the animals survive","To remove all trees","To make rivers polluted"],0]
+],"Pilih satu jawaban untuk setiap soal, lalu tekan Periksa jawaban.")},
+{label:"Asesmen akhir",title:"6. Asesmen Akhir — Show What You Learned",body:quizForm("post",[
+["Bekantan naturally lives on…",["Borneo (Kalimantan and nearby regions)","The Arctic","Madagascar only"],0],
+["The long nose is especially noticeable in…",["male proboscis monkeys","baby crocodiles","female eagles"],0],
+["Which is a complete descriptive detail?",["It has reddish-brown fur and lives near rivers.","It is nice.","Look over there!"],0],
+["Which action helps conservation?",["Protecting forests and mangroves","Throwing rubbish into rivers","Disturbing wild animals"],0],
+["In descriptive text, the identification usually…",["introduces the animal being described","gives a cooking recipe","lists unrelated instructions"],0]
+],"Kerjakan mandiri. Nilai akhir ditampilkan setelah jawaban diperiksa.")},
+{label:"Refleksi",title:"7. Refleksi — Think Back",body:`
+<p>Luangkan waktu untuk merefleksikan pembelajaranmu.</p>
+<div class="question"><label for="learned"><b>1. One new thing I learned about the bekantan is…</b></label><textarea id="learned" rows="3" style="width:100%;padding:10px;border:1px solid #ccdcd8;border-radius:10px" placeholder="Write your answer here…"></textarea></div>
+<div class="question"><b>2. How confident are you describing an animal in English?</b><div class="options"><label><input type="radio" name="conf" value="Very confident"> Very confident</label><label><input type="radio" name="conf" value="Somewhat confident"> Somewhat confident</label><label><input type="radio" name="conf" value="Need more practice"> I need more practice</label></div></div>
+<div class="question"><label for="action"><b>3. One action I can take to protect animals is…</b></label><textarea id="action" rows="2" style="width:100%;padding:10px;border:1px solid #ccdcd8;border-radius:10px" placeholder="Write your action…"></textarea></div>
+<button class="btn primary" onclick="saveReflection()">Save reflection on this device</button> <button class="btn" onclick="go(0)">Back to start ↺</button><p id="refResult" class="feedback"></p>
+<p class="small">Catatan: refleksi disimpan sementara di halaman ini dan tidak dikirim ke guru secara otomatis.</p>`}
+];
+function quizForm(id, qs, intro){return `<p>${intro}</p><form id="${id}Form">${qs.map((q,i)=>`<div class="question"><b>${i+1}. ${q[0]}</b><div class="options">${q[1].map((o,j)=>`<label><input type="radio" name="${id}${i}" value="${j}"> ${o}</label>`).join("")}</div></div>`).join("")}<button class="btn primary" type="button" onclick="grade('${id}',${JSON.stringify(qs).replace(/"/g,'&quot;')})">Check answers</button><div id="${id}Result" class="feedback"></div></form>`}
+let current=0;
+function renderNav(){document.getElementById('nav').innerHTML=pages.map((p,i)=>`<button class="${i===current?'active':''}" onclick="go(${i})">${p.label}</button>`).join("")}
+function go(i){current=i;document.getElementById('content').innerHTML=pages[i].title+pages[i].body;renderNav();document.getElementById('progress').style.width=((i+1)/pages.length*100)+'%';window.scrollTo({top:0,behavior:'smooth'})}
+function grade(id,qs){let score=0,answered=0;qs.forEach((q,i)=>{let a=document.querySelector(`input[name="${id}${i}"]:checked`);if(a){answered++;if(Number(a.value)===q[2])score++}});let msg=answered<qs.length?`You answered ${answered} of ${qs.length}. Please answer all questions first.`:`Your score: ${score}/${qs.length} (${Math.round(score/qs.length*100)}%). `+(score===qs.length?'Excellent work!':score>=Math.ceil(qs.length*.6)?'Good effort! Review the material for any missed answers.':'Keep practicing. Review the key facts and try again.');let el=document.getElementById(id+'Result');el.textContent=msg;el.className='feedback '+(answered===qs.length&&score>=Math.ceil(qs.length*.6)?'good':'bad')}
+function checkSim(){let h=document.getElementById('habitat').value,f=document.getElementById('food').value,p=document.getElementById('protect').value;let n=[h==='river',f==='leaves',p==='trees'].filter(Boolean).length;document.getElementById('simResult').textContent=`You got ${n}/3 correct.`;document.getElementById('simResult').className='feedback '+(n===3?'good':'bad');document.getElementById('builtText').textContent=n===3?'The proboscis monkey lives in forests near rivers and mangroves. It eats leaves, seeds, and fruits. We can help it survive by protecting its habitat.':'Try again. Think about the bekantan’s habitat, diet, and conservation.'}
+function saveReflection(){let a=document.getElementById('learned').value.trim(),b=document.getElementById('action').value.trim(),c=document.querySelector('input[name="conf"]:checked');if(!a||!b||!c){document.getElementById('refResult').textContent='Please complete all reflection prompts.';return}document.getElementById('refResult').textContent='Reflection completed. Thank you for learning about the bekantan!';}
+go(0);
+</script></body></html>
